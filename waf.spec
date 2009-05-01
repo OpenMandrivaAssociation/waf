@@ -3,14 +3,14 @@
 
 Summary:	A framework for configuring, compiling and installing applications
 Name:		waf
-Version:	1.5.3
+Version:	1.5.5
 Release:	%mkrel 1
 License:	BSD
 Group:		Development/Other
 Url:		http://code.google.com/p/waf/
 Source0:	http://waf.googlecode.com/files/%{name}-%{version}.tar.bz2
 Source1:	%{name}.macros
-Patch0:		%{name}-1.5.2-installdir.patch
+Patch0:		%{name}-1.5.5-installdir.patch
 %py_requires -d
 BuildArch:	noarch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
