@@ -3,7 +3,7 @@
 
 Summary:	A framework for configuring, compiling and installing applications
 Name:		waf
-Version:	1.5.6
+Version:	1.5.8
 Release:	%mkrel 1
 License:	BSD
 Group:		Development/Other
