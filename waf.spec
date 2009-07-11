@@ -11,6 +11,7 @@ Url:		http://code.google.com/p/waf/
 Source0:	http://waf.googlecode.com/files/%{name}-%{version}.tar.bz2
 Source1:	%{name}.macros
 Patch0:		%{name}-1.5.5-installdir.patch
+Patch1:		%{name}-1.5.8-fix-pthread-linkage.patch
 %py_requires -d
 BuildArch:	noarch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
@@ -45,6 +46,7 @@ Scons, Autotools, CMake or Ant.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p0
 
 %build
 ./waf-light configure --prefix=%{_prefix}
