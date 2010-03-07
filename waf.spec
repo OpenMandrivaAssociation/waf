@@ -3,7 +3,7 @@
 
 Summary:	A framework for configuring, compiling and installing applications
 Name:		waf
-Version:	1.5.12
+Version:	1.5.14
 Release:	%mkrel 1
 License:	BSD
 Group:		Development/Other
@@ -18,30 +18,30 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 Waf is a Python-based framework for configuring, compiling and installing
-applications.It derives from the concepts of other build tools such as 
-Scons, Autotools, CMake or Ant.
+applications. It derives from the concepts of other build tools such as 
+Scons, Autotools, CMake, and Ant.
 
 * Easy to use: Waf configuration files are written in the mainstream 
-  scripting language Python
+  scripting language Python.
 * Easy to install and to distribute: Waf fits entirely in a single 
-  75KB redistributable file which does not require any installation to run
+  75KB redistributable file which does not require any installation to run.
 * Portable: Waf only depends on Python which is ported onto most 
-  operating systems
+  operating systems.
 * Reliable: Waf uses hash-based dependency calculation dependencies to 
-  compute the targets to rebuild
+  compute the targets to rebuild.
 * User-friendly: The output can be displayed in colors, filtered, 
   displayed with progress bars or output all the commands that get 
-  executed
-* Documented: The Waf book sums up the essential concepts
+  executed.
+* Documented: The Waf book sums up the essential concepts.
 * Flexible: Because Waf has a carefully designed object oriented 
-  architecture it is very easy to add new features
+  architecture it is very easy to add new features.
 * Fast: Because of its carefully designed architecture, Waf is able 
   to distribute the jobs on multi-core hardware (-j), it is able to 
   reuse targets compiled already (ccache), and its runtime footprint 
-  is pretty small compared to other build tools
+  is pretty small compared to other build tools.
 * Broad support for languages and tools: Waf is already used for C, 
   C++, C#, D, java, ocaml, python project, and provides various 
-  tools for processing docbook, man pages, intltool, msgfmt 
+  tools for processing docbook, man pages, intltool, msgfmt. 
 
 %prep
 %setup -q
