@@ -60,9 +60,6 @@ done
 
 ./waf-light --make-waf --strip --tools="$extras" --prefix=%{_prefix}
 
-#./waf-light configure --prefix=%{_prefix}
-
-
 %install
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 
