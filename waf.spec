@@ -3,15 +3,14 @@
 
 Summary:	A framework for configuring, compiling and installing applications
 Name:		waf
-Version:	1.5.19
-Release:	%mkrel 2
+Version:	1.6.8
+Release:	%mkrel 1
 License:	BSD
 Group:		Development/Other
 Url:		http://code.google.com/p/waf/
 Source0:	http://waf.googlecode.com/files/%{name}-%{version}.tar.bz2
 Source1:	%{name}.macros
-Patch0:		%{name}-1.5.11-installdir.patch
-Patch1:		%{name}-1.5.18-fix-pthread-linkage.patch
+Patch2:		waf-1.6.2-libdir.patch
 %py_requires -d
 BuildArch:	noarch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
@@ -45,39 +44,54 @@ Scons, Autotools, CMake, and Ant.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
+%patch2 -p0
 
 %build
+
 ./waf-light configure --prefix=%{_prefix}
 
-./waf-light --make-waf --strip
+extras=
+for f in waflib/extras/*.py ; do
+   f=$(basename "$f" .py);
+   if [ "$f" != "__init__" ]; then
+     extras="${extras:+$extras,}$f" ;
+   fi
+done
+
+./waf-light --make-waf --strip --tools="$extras" --prefix=%{_prefix}
+
+#./waf-light configure --prefix=%{_prefix}
+
 
 %install
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 
-# say yes, please
-echo y | ./waf-light install --destdir=%{buildroot}
+# use waf so it unpacks itself
+mkdir _temp ; pushd _temp
+cp -av ../waf .
+%{__python} ./waf >/dev/null 2>&1
+    pushd .waf-%{version}-*
+	find . -name '*.py' -printf '%%P\0' | xargs -0 -I{} install -m 0644 -p -D {} %{buildroot}%{_datadir}/waf/{}
+    popd
+popd
 
-# remove shebangs from all scripts in wafadmin
-find %{buildroot}%{_datadir}/waf/wafadmin -name '*.py' -exec %{__sed} -i '1{/^#!/d}' {} \;
+install -m 0755 -p -D waf-light %{buildroot}%{_bindir}/waf
+
+# remove shebangs from and fix EOL for all scripts in wafadmin
+find %{buildroot}%{_datadir}/ -name '*.py' \
+      -exec sed -i -e '1{/^#!/d}' -e 's|\r$||g' {} \;
 
 # fix waf script shebang line
-%{__sed} -i "1c#! /usr/bin/python" %{buildroot}%{_bindir}/waf
-
-# fix EOL
-%{__sed} -i 's|\r$||g' utils/amtool.py
+sed -i "1c#! /usr/bin/python" %{buildroot}%{_bindir}/waf
 
 # remove x-bits from everything going to doc
 find demos utils -type f -exec %{__chmod} 0644 {} \;
 
-# remove zero-length files
-%{__rm} demos/gnome/src/hello.h
-%{__rm} demos/simple_scenarios/local_tool/uh.coin
+# remove hidden file
+rm -f docs/sphinx/build/html/.buildinfo
 
-# bash completion
-%{__install} -D -p -m 0644 utils/waf-completion.bash \
-  %{buildroot}%{_sysconfdir}/bash_completion.d//waf-completion.bash
+# remove x-bits from everything going to doc
+find demos utils -type f -exec %{__chmod} 0644 {} \;
 
 # install waf rpm macro helper
 install -D %{SOURCE1} %{buildroot}%{_sysconfdir}/rpm/macros.d/%{name}.macros
@@ -87,8 +101,7 @@ install -D %{SOURCE1} %{buildroot}%{_sysconfdir}/rpm/macros.d/%{name}.macros
 
 %files
 %defattr(-,root,root)
-%doc README TODO ChangeLog demos doc/book utils
-%{_sysconfdir}/bash_completion.d/%{name}*
+%doc README TODO ChangeLog demos utils
 %{_sysconfdir}/rpm/macros.d/%{name}.macros
 %{_bindir}/%{name}
 %{_datadir}/%{name}
