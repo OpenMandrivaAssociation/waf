@@ -1,10 +1,17 @@
 %define debug_package %{nil}
 %define _requires_exceptions perl(Exporter)|\\perl(XSLoader)|\\
 
+%define rel		1
+%if %mdkversion < 201100
+%define release	%mkrel %{rel}
+%else
+%define	release %{rel}
+%endif
+
 Summary:	A framework for configuring, compiling and installing applications
 Name:		waf
-Version:	1.6.8
-Release:	%mkrel 1
+Version:	1.6.11
+Release:	%{release}
 License:	BSD
 Group:		Development/Other
 Url:		http://code.google.com/p/waf/
