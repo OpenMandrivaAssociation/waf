@@ -1,0 +1,19 @@
+%__waf	%{_bindir}/waf
+
+%configure_waf \
+  %setup_compile_flags \
+  LINKFLAGS="%{?ldflags}" ; export LINKFLAGS ; \
+  %__waf configure \\\
+    --prefix=%{_prefix} \\\
+    --exec-prefix=%{_exec_prefix} \\\
+    --sbindir=%{_sbindir} \\\
+    --bindir=%{_bindir} \\\
+    --datadir=%{_datadir} \\\
+    --libdir=%{_libdir} \\\
+    --sysconfdir=%{_sysconfdir} \\\
+    --includedir=%{_includedir} \\\
+    --mandir=%{_mandir}
+
+%waf		%__waf build %_smp_mflags --want-rpath=0
+
+%waf_install	%__waf install --destdir=%{buildroot}
