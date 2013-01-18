@@ -1,7 +1,6 @@
 %define debug_package %{nil}
-%define _requires_exceptions perl(Exporter)|\\perl(XSLoader)|\\
 
-%define rel		1
+%define rel		2
 %if %mdkversion < 201100
 %define release	%mkrel %{rel}
 %else
@@ -19,6 +18,7 @@ Source0:	http://waf.googlecode.com/files/%{name}-%{version}.tar.bz2
 Source1:	%{name}.macros
 Patch2:		waf-1.6.2-libdir.patch
 %py_requires -d
+Requires:   python
 BuildArch:	noarch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
