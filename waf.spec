@@ -2,15 +2,15 @@
 
 Summary:	A framework for configuring, compiling and installing applications
 Name:		waf
-Version:	1.6.11
-Release:	3
+Version:	1.7.16
+Release:	1
 License:	BSD
 Group:		Development/Other
 Url:		http://code.google.com/p/waf/
 Source0:	http://waf.googlecode.com/files/%{name}-%{version}.tar.bz2
 Source1:	%{name}.macros
 Patch2:		waf-1.6.2-libdir.patch
-BuildRequires:  python-devel
+BuildRequires:  pkgconfig(python)
 Requires:       python
 BuildArch:	noarch
 
@@ -95,4 +95,3 @@ install -D %{SOURCE1} %{buildroot}%{_sysconfdir}/rpm/macros.d/%{name}.macros
 %{_sysconfdir}/rpm/macros.d/%{name}.macros
 %{_bindir}/%{name}
 %{_datadir}/%{name}
-
