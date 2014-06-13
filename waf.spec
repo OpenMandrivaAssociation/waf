@@ -3,7 +3,7 @@
 Summary:	A framework for configuring, compiling and installing applications
 Name:		waf
 Version:	1.7.16
-Release:	1
+Release:	2
 License:	BSD
 Group:		Development/Other
 Url:		http://code.google.com/p/waf/
