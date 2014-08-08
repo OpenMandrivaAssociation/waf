@@ -61,7 +61,7 @@ done
 # use waf so it unpacks itself
 mkdir _temp ; pushd _temp
 cp -av ../waf .
-%{__python} ./waf
+%{__python} ./waf >/dev/null 2>&1
     pushd .waf-%{version}-*
 	find . -name '*.py' -printf '%%P\0' | xargs -0 -I{} install -m 0644 -p -D {} %{buildroot}%{_datadir}/waf/{}
     popd
