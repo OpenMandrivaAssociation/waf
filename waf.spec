@@ -1,7 +1,7 @@
 Summary:	A framework for configuring, compiling and installing applications
 Name:		waf
-Version:	1.7.16
-Release:	4
+Version:	1.8.2
+Release:	1
 License:	BSD
 Group:		Development/Other
 Url:		http://code.google.com/p/waf/
@@ -61,8 +61,9 @@ done
 # use waf so it unpacks itself
 mkdir _temp ; pushd _temp
 cp -av ../waf .
-%{__python2} ./waf >/dev/null 2>&1
-    pushd .waf-%{version}-*
+
+./waf
+    pushd .waf3-%{version}-*
 	find . -name '*.py' -printf '%%P\0' | xargs -0 -I{} install -m 0644 -p -D {} %{buildroot}%{_datadir}/waf/{}
     popd
 popd
