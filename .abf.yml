@@ -1,4 +1,2 @@
-removed_sources:
-  waf-1.7.16.tar.bz2: 65d41120277d06b027bd4d4f435c176f67d2d865
 sources:
-  waf-1.8.2.tar.bz2: 860a2b86df3783fa62974f06dbe92171233fac04
+  waf-1.8.20.tar.gz: d5b5e34c57c431d3b3da2de3db655e4a55a3dc56

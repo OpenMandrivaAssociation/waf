@@ -1,11 +1,11 @@
 Summary:	A framework for configuring, compiling and installing applications
 Name:		waf
-Version:	1.8.2
-Release:	3
+Version:	1.8.20
+Release:	1
 License:	BSD
 Group:		Development/Other
-Url:		http://code.google.com/p/waf/
-Source0:	http://waf.googlecode.com/files/%{name}-%{version}.tar.bz2
+Url:		https://github.com/waf-project/waf/
+Source0:	https://github.com/waf-project/waf/archive/%{name}-%{version}.tar.gz
 Source1:	%{name}.macros
 Patch2:		waf-1.6.2-libdir.patch
 BuildRequires:  pkgconfig(python)
@@ -40,7 +40,7 @@ Scons, Autotools, CMake, and Ant.
   tools for processing docbook, man pages, intltool, msgfmt. 
 
 %prep
-%setup -q
+%setup -qn %{name}-%{name}-%{version}
 %patch2 -p0
 
 %build
@@ -90,7 +90,7 @@ find demos utils -type f -exec %{__chmod} 0644 {} \;
 install -D %{SOURCE1} %{buildroot}%{_sysconfdir}/rpm/macros.d/%{name}.macros
 
 %files
-%doc README TODO ChangeLog demos utils
+%doc README ChangeLog demos utils
 %{_sysconfdir}/rpm/macros.d/%{name}.macros
 %{_bindir}/%{name}
 %{_datadir}/%{name}
