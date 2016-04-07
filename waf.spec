@@ -45,7 +45,7 @@ Scons, Autotools, CMake, and Ant.
 
 %build
 
-%{__python2} ./waf-light configure --prefix=%{_prefix}
+%{__python2} ./waf-light configure --prefix=%{_prefix} CC=%{__cc}
 
 extras=
 for f in waflib/extras/*.py ; do
@@ -55,7 +55,7 @@ for f in waflib/extras/*.py ; do
    fi
 done
 
-%{__python2} ./waf-light --make-waf --strip --tools="$extras" --prefix=%{_prefix}
+%{__python2} ./waf-light --make-waf --strip --tools="$extras" --prefix=%{_prefix} CC=%{__cc}
 
 %install
 # use waf so it unpacks itself
