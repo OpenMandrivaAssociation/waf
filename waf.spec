@@ -58,10 +58,10 @@ for f in waflib/extras/*.py ; do
    fi
 done
 
-%ifnarch %arm
-%{__python} ./waf-light --make-waf --strip --tools="$extras" --prefix=%{_prefix} CC=%{__cc}
-%else
+%ifarch %arm
 %{__python2} ./waf-light --make-waf --strip --tools="$extras" --prefix=%{_prefix} CC=%{__cc}
+%else
+%{__python} ./waf-light --make-waf --strip --tools="$extras" --prefix=%{_prefix} CC=%{__cc}
 %endif
 
 %install
