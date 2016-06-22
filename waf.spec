@@ -1,7 +1,7 @@
 Summary:	A framework for configuring, compiling and installing applications
 Name:		waf
-Version:	1.8.20
-Release:	2.1
+Version:	1.8.22
+Release:	1
 License:	BSD
 Group:		Development/Other
 Url:		https://github.com/waf-project/waf/
@@ -9,11 +9,11 @@ Source0:	https://github.com/waf-project/waf/archive/%{name}-%{version}.tar.gz
 Source1:	%{name}.macros
 Patch2:		waf-1.6.2-libdir.patch
 BuildRequires:  pkgconfig(python)
-Requires:       python2
+Requires:       python >= 3
 BuildArch:	noarch
 
 %description
-Waf is a Python-based framework for configuring, compiling and installing
+Waf is a Python 3 framework for configuring, compiling and installing
 applications. It derives from the concepts of other build tools such as 
 Scons, Autotools, CMake, and Ant.
 
@@ -40,12 +40,12 @@ Scons, Autotools, CMake, and Ant.
   tools for processing docbook, man pages, intltool, msgfmt. 
 
 %prep
-%setup -qn %{name}-%{name}-%{version}
+%setup -q
 %patch2 -p0
 
 %build
 
-%{__python2} ./waf-light configure --prefix=%{_prefix} CC=%{__cc}
+%{__python} ./waf-light configure --prefix=%{_prefix} CC=%{__cc}
 
 extras=
 for f in waflib/extras/*.py ; do
@@ -55,7 +55,7 @@ for f in waflib/extras/*.py ; do
    fi
 done
 
-%{__python2} ./waf-light --make-waf --strip --tools="$extras" --prefix=%{_prefix} CC=%{__cc}
+%{__python} ./waf-light --make-waf --strip --tools="$extras" --prefix=%{_prefix} CC=%{__cc}
 
 %install
 # use waf so it unpacks itself
@@ -64,7 +64,7 @@ cp -av ../waf .
 
 ./waf
     pushd .waf3-%{version}-*
-	find . -name '*.py' -printf '%%P\0' | xargs -0 -I{} install -m 0644 -p -D {} %{buildroot}%{_datadir}/waf/{}
+	find . -name '*.py' -printf '%%P\0' | xargs -0 -I{} install -m 0644 -p -D {} %{buildroot}%{_datadir}/waf3/{}
     popd
 popd
 
@@ -93,4 +93,4 @@ install -D %{SOURCE1} %{buildroot}%{_sysconfdir}/rpm/macros.d/%{name}.macros
 %doc README ChangeLog demos utils
 %{_sysconfdir}/rpm/macros.d/%{name}.macros
 %{_bindir}/%{name}
-%{_datadir}/%{name}
+%{_datadir}/%{name}3
