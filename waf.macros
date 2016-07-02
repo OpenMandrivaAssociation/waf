@@ -14,6 +14,6 @@
     --includedir=%{_includedir} \\\
     --mandir=%{_mandir}
 
-%waf		%__waf build %_smp_mflags --want-rpath=0
+%waf		%__waf build %_smp_mflags
 
 %waf_install	%__waf install --destdir=%{buildroot}
