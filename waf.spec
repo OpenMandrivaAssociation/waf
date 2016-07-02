@@ -1,7 +1,7 @@
 Summary:	A framework for configuring, compiling and installing applications
 Name:		waf
 Version:	1.8.22
-Release:	1
+Release:	2
 License:	BSD
 Group:		Development/Other
 Url:		https://github.com/waf-project/waf/
@@ -9,6 +9,9 @@ Source0:	https://github.com/waf-project/waf/archive/%{name}-%{version}.tar.gz
 Source1:	%{name}.macros
 Patch2:		waf-1.6.2-libdir.patch
 BuildRequires:  pkgconfig(python)
+%ifarch %arm
+BuildRequires:  pkgconfig(python2)
+%endif
 Requires:       python >= 3
 BuildArch:	noarch
 
@@ -55,7 +58,11 @@ for f in waflib/extras/*.py ; do
    fi
 done
 
+%ifarch %arm
+%{__python2} ./waf-light --make-waf --strip --tools="$extras" --prefix=%{_prefix} CC=%{__cc}
+%else
 %{__python} ./waf-light --make-waf --strip --tools="$extras" --prefix=%{_prefix} CC=%{__cc}
+%endif
 
 %install
 # use waf so it unpacks itself
