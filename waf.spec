@@ -1,7 +1,7 @@
 Summary:	A framework for configuring, compiling and installing applications
 Name:		waf
 Version:	1.8.22
-Release:	2
+Release:	3
 License:	BSD
 Group:		Development/Other
 Url:		https://github.com/waf-project/waf/
