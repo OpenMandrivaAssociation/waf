@@ -1,11 +1,11 @@
 Summary:	A framework for configuring, compiling and installing applications
 Name:		waf
-Version:	1.8.22
-Release:	3
+Version:	2.0.10
+Release:	1
 License:	BSD
 Group:		Development/Other
-Url:		https://github.com/waf-project/waf/
-Source0:	https://github.com/waf-project/waf/archive/%{name}-%{version}.tar.gz
+Url:		https://waf.io/
+Source0:	https://waf.io/waf-2.0.10.tar.bz2
 Source1:	%{name}.macros
 Patch2:		waf-1.6.2-libdir.patch
 BuildRequires:  pkgconfig(python)
@@ -97,7 +97,7 @@ find demos utils -type f -exec %{__chmod} 0644 {} \;
 install -D %{SOURCE1} %{buildroot}%{_sysconfdir}/rpm/macros.d/%{name}.macros
 
 %files
-%doc README ChangeLog demos utils
+%doc README.md ChangeLog demos utils
 %{_sysconfdir}/rpm/macros.d/%{name}.macros
 %{_bindir}/%{name}
 %{_datadir}/%{name}3
