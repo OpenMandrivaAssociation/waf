@@ -97,7 +97,7 @@ find demos utils -type f -exec %{__chmod} 0644 {} \;
 install -D %{SOURCE1} %{buildroot}%{_sysconfdir}/rpm/macros.d/%{name}.macros
 
 %files
-%doc README ChangeLog demos utils
+%doc README.md ChangeLog demos utils
 %{_sysconfdir}/rpm/macros.d/%{name}.macros
 %{_bindir}/%{name}
 %{_datadir}/%{name}3
