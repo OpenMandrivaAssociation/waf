@@ -1,7 +1,7 @@
 Summary:	A framework for configuring, compiling and installing applications
 Name:		waf
-Version:	2.0.10
-Release:	3
+Version:	2.0.20
+Release:	1
 License:	BSD
 Group:		Development/Other
 Url:		https://waf.io/
