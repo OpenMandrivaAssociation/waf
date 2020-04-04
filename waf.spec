@@ -5,7 +5,7 @@ Release:	1
 License:	BSD
 Group:		Development/Other
 Url:		https://waf.io/
-Source0:	https://waf.io/waf-2.0.10.tar.bz2
+Source0:	https://waf.io/waf-%{version}.tar.bz2
 Source1:	%{name}.macros
 Patch2:		waf-1.6.2-libdir.patch
 BuildRequires:  pkgconfig(python)
