@@ -1,6 +1,6 @@
 Summary:	A framework for configuring, compiling and installing applications
 Name:		waf
-Version:	2.0.21
+Version:	2.0.24
 Release:	1
 License:	BSD
 Group:		Development/Other
