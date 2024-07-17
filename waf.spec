@@ -9,9 +9,6 @@ Source0:	https://waf.io/waf-%{version}.tar.bz2
 Source1:	%{name}.macros
 Patch2:		waf-1.6.2-libdir.patch
 BuildRequires:  pkgconfig(python)
-%ifarch %arm
-BuildRequires:  pkgconfig(python2)
-%endif
 Requires:       python >= 3
 BuildArch:	noarch
 
@@ -44,7 +41,7 @@ Scons, Autotools, CMake, and Ant.
 
 %prep
 %setup -q
-%patch2 -p0
+%patch 2 -p0
 
 %build
 
